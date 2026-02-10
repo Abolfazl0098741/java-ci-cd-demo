@@ -1,0 +1,11 @@
+stages:
+  - build
+  - deploy    
+build:
+    stage: build
+    script:
+      - mvn clean package   
+deploy:
+    stage: deploy
+    script: 
+      - copy target\*.jar C:\apps\
