@@ -7,12 +7,12 @@ stages:
 build:
   stage: build
   script:
+    - mvn clean compile
+    
+package:
+  stage: deploy
+  script:
     - mvn clean package
   artifacts:
     paths:
       - target/*.jar
-
-deploy:
-  stage: deploy
-  script:
-    - echo "در اینجا می‌تونی کار Deploy انجام بدی"
