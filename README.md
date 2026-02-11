@@ -118,8 +118,6 @@ This project demonstrates:
 **Abolfazl**
 Java Developer | DevOps Enthusiast
 
-* GitHub: [https://github.com/Abolfazl0098741](https://github.com/Abolfazl0098741)
-
 ---
 
 If you find this project useful, feel free to ⭐ star the repository.
