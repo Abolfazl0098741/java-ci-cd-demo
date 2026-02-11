@@ -1,29 +1,125 @@
-JavaParser and Maven sample
+# Java CI/CD Project with GitLab
+
+This repository demonstrates a complete **CI/CD pipeline implementation** for a Java application using **Maven** and **GitLab CI/CD**. It is designed as a portfolio project to showcase DevOps and automation skills.
+
 ---
 
-This fully working sample Maven project parses and generates code with [JavaParser](http://www.javaparser.org).
+##  Project Overview
 
-This sample is targeted at people without [Maven](https://maven.apache.org/) experience.
+This project automates the build and packaging process of a Java application. Every commit triggers a pipeline that:
 
-To build it, you will need to download and unpack the latest (or recent) version of Maven (https://maven.apache.org/download.cgi)
-and put the `mvn` command on your path.
+* Builds the project using Maven
+* Runs automated packaging
+* Generates a deployable JAR file
+* Stores build artifacts
 
-Then, you will need to install a Java 1.8 (or higher) JDK (not JRE!), and make sure you can run `java` from the command line.
+The pipeline runs inside a Docker-based GitLab Runner for consistency and reliability.
 
-If required, install git. If you haven't already done so, clone this sample repository with `git clone https://github.com/javaparser/javaparser-maven-sample.git`.
+---
 
-Change to the folder of where this sample project was installed (where the pom.xml file is located).
-Now run `mvn clean install` and Maven will compile your project, 
-and put the results into two jar files in the `target` directory.
 
-You can now run the sample from the command line with
-`java -jar target/javaparser-maven-sample-1.0-SNAPSHOT-shaded.jar`.
-This runs the sample program, LogicPositivizer, which reads, parses, and modifies the code in resources/Blabla.java and then writes the modified file with the same name to the output folder.
+## CI/CD Pipeline Workflow
 
-To better understand this sample, you can read [JavaParser: Visited.](https://leanpub.com/javaparservisited) In this book, key contributors to the JavaParser library teach you how you can use JavaParser to programmatically analyse, transform and generate your java code base.
+The pipeline is defined in `.gitlab-ci.yml` and consists of the following stages:
 
-How you run this code is up to you, but usually you would start by using an IDE like [NetBeans](https://netbeans.org/), [Intellij IDEA](https://www.jetbrains.com/idea/), or [Eclipse](https://eclipse.org/ide/).
+### Build Stage
 
-The Maven dependencies may lag behind the official releases a bit.
+* Cleans previous builds
+* Compiles the source code
+* Packages the application
 
-If you notice some problems with this setup, please open an issue.
+Command used:
+
+```bash
+mvn clean package
+```
+
+### Deploy Stage
+
+* Stores the generated JAR file
+* Makes it available as an artifact
+
+Artifacts:
+
+```
+target/*.jar
+```
+
+---
+
+## Project Structure
+
+```
+java-ci-cd/
+│
+├── src/                # Application source code
+├── target/             # Compiled output (generated)
+├── .gitlab-ci.yml      # CI/CD configuration
+├── pom.xml             # Maven configuration
+└── README.md           # Project documentation
+```
+
+---
+
+## Download Build Artifact (JAR)
+
+After each successful pipeline run:
+
+1. Open the project in GitLab
+2. Go to **CI/CD → Pipelines**
+3. Select a successful pipeline
+4. Click on **Job → Artifacts**
+5. Download the generated `.jar` file
+
+---
+
+##  Run the Application Locally
+
+### Prerequisites
+
+* Java 17+
+* Maven 3.8+
+
+### Steps
+
+```bash
+git clone <repository-url>
+cd java-ci-cd
+mvn clean package
+java -jar target/your-app.jar
+```
+
+---
+
+## Learning Objectives
+
+This project demonstrates:
+
+* Practical usage of GitLab CI/CD
+* Automated Java build pipelines
+* Artifact management
+* Docker-based CI environments
+* Professional project documentation
+
+---
+
+## Future Improvements
+
+* Add automated unit testing
+* Integrate code quality tools (SonarQube)
+* Add deployment to cloud server
+* Implement GitHub Actions pipeline
+* Add Docker image build stage
+
+---
+
+## Author
+
+**Abolfazl**
+Java Developer | DevOps Enthusiast
+
+* GitHub: [https://github.com/Abolfazl0098741](https://github.com/Abolfazl0098741)
+
+---
+
+If you find this project useful, feel free to ⭐ star the repository.
